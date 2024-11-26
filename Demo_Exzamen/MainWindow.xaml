@@ -40,8 +40,8 @@
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
 				<DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}"/>
-				<DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
-				<DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+				<DataGridTextColumn Header="Фамилия" Binding="{Binding FirstName}"/>
+				<DataGridTextColumn Header="Имя" Binding="{Binding LastName}"/>
 				<DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
 				<DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=d}"/>
 				<DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>

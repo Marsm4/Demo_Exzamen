@@ -135,7 +135,13 @@ namespace Demo_Exzamen
 
                 // Сохраняем путь к файлу в базе данных
                 _client.PhotoPath = destinationPath;
-                PhotoImage.Source = new BitmapImage(new Uri(destinationPath));
+
+                // Отображаем миниатюру фотографии
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(destinationPath);
+                bitmap.EndInit();
+                PhotoImage.Source = bitmap;
             }
         }
 
