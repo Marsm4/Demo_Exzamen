@@ -11,13 +11,21 @@ namespace Demo_Exzamen
 {
     public partial class AddEditClientWindow : Window
     {
+        private static bool _isAddEditWindowOpen = false;
         private RPM_DEMO_PROBAEntities1 _context;
         private Clients _client;
         private bool _isNewClient;
 
         public AddEditClientWindow(RPM_DEMO_PROBAEntities1 context, Clients client = null)
         {
+            if (_isAddEditWindowOpen)
+            {
+                MessageBox.Show("Окно редактирования уже открыто.");
+                return;
+            }
+
             InitializeComponent();
+            _isAddEditWindowOpen = true;
             _context = context;
             _client = client;
             _isNewClient = client == null;
@@ -81,16 +89,12 @@ namespace Demo_Exzamen
                 _context.Clients.Add(_client);
             }
 
-            try
-            {
+         
                 _context.SaveChanges();
                 DialogResult = true;
                 Close();
-            }
-            catch (DbUpdateException ex)
-            {
-                MessageBox.Show("Ошибка при сохранении данных: " + ex.InnerException?.Message);
-            }
+            
+           
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -181,6 +185,12 @@ namespace Demo_Exzamen
             {
                 return false;
             }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            _isAddEditWindowOpen = false;
         }
     }
 }

@@ -67,6 +67,7 @@
     <Compile Include="AddEditClientWindow.xaml.cs">
       <DependentUpon>AddEditClientWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Client.cs" />
     <Compile Include="Clients.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
