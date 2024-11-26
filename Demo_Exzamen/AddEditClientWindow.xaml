@@ -1,0 +1,66 @@
+﻿<Window x:Class="Demo_Exzamen.AddEditClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo_Exzamen"
+        mc:Ignorable="d"
+        Title="AddEditClientWindow" Height="850" Width="800">
+	<Grid Margin="0,0,0,-6">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock Text="ID:" Grid.Row="0" Margin="5"/>
+		<TextBox x:Name="IdTextBox" Grid.Row="1" Margin="5" IsReadOnly="True"/>
+
+		<TextBlock Text="Фамилия:" Grid.Row="2" Margin="5"/>
+		<TextBox x:Name="LastNameTextBox" Grid.Row="3" Margin="5"/>
+
+		<TextBlock Text="Имя:" Grid.Row="4" Margin="5"/>
+		<TextBox x:Name="FirstNameTextBox" Grid.Row="5" Margin="5"/>
+
+		<TextBlock Text="Отчество:" Grid.Row="6" Margin="5"/>
+		<TextBox x:Name="PatronymicTextBox" Grid.Row="7" Margin="5"/>
+
+		<TextBlock Text="Email:" Grid.Row="8" Margin="5"/>
+		<TextBox x:Name="EmailTextBox" Grid.Row="9" Margin="5"/>
+
+		<TextBlock Text="Телефон:" Grid.Row="10" Margin="5"/>
+		<TextBox x:Name="PhoneTextBox" Grid.Row="11" Margin="5"/>
+
+		<TextBlock Text="Дата рождения:" Grid.Row="12" Margin="5"/>
+		<DatePicker x:Name="BirthdayDatePicker" Grid.Row="13" Margin="5"/>
+
+		<TextBlock Text="Пол:" Grid.Row="14" Margin="5"/>
+		<StackPanel Orientation="Horizontal" Grid.Row="15" Margin="5">
+			<RadioButton x:Name="MaleRadioButton" Content="Мужской" GroupName="Gender" IsChecked="True"/>
+			<RadioButton x:Name="FemaleRadioButton" Content="Женский" GroupName="Gender"/>
+		</StackPanel>
+
+		<TextBlock Text="Фотография:" Grid.Row="16" Margin="5"/>
+		<Button x:Name="PhotoButton" Content="Выбрать фото" Grid.Row="17" Margin="5,5,5,197" Click="PhotoButton_Click"/>
+		<Image x:Name="PhotoImage" Grid.Row="18" Margin="5" Width="100" Height="100"/>
+
+		<Button x:Name="SaveButton" Content="Сохранить" Grid.Row="19" Margin="10,214,0,60" Click="SaveButton_Click" Grid.RowSpan="2"/>
+		<Button x:Name="CancelButton" Content="Отмена" Grid.Row="19" Margin="33,82,23,82" Click="CancelButton_Click"/>
+	</Grid>
+</Window>

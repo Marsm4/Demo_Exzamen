@@ -64,6 +64,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddEditClientWindow.xaml.cs">
+      <DependentUpon>AddEditClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Clients.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -111,6 +114,10 @@
     <Compile Include="Tag.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Page Include="AddEditClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -172,6 +179,106 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\1.jpg" />
+    <Resource Include="Images\10.jpg" />
+    <Resource Include="Images\11.jpg" />
+    <Resource Include="Images\12.jpg" />
+    <Resource Include="Images\13.jpg" />
+    <Resource Include="Images\14.jpg" />
+    <Resource Include="Images\15.jpg" />
+    <Resource Include="Images\16.jpg" />
+    <Resource Include="Images\17.jpg" />
+    <Resource Include="Images\18.jpg" />
+    <Resource Include="Images\19.jpg" />
+    <Resource Include="Images\2.jpg" />
+    <Resource Include="Images\20.jpg" />
+    <Resource Include="Images\21.jpg" />
+    <Resource Include="Images\22.jpg" />
+    <Resource Include="Images\23.jpg" />
+    <Resource Include="Images\24.jpg" />
+    <Resource Include="Images\25.jpg" />
+    <Resource Include="Images\26.jpg" />
+    <Resource Include="Images\27.jpg" />
+    <Resource Include="Images\28.jpg" />
+    <Resource Include="Images\29.jpg" />
+    <Resource Include="Images\3.jpg" />
+    <Resource Include="Images\30.jpg" />
+    <Resource Include="Images\31.jpg" />
+    <Resource Include="Images\32.jpg" />
+    <Resource Include="Images\33.jpg" />
+    <Resource Include="Images\34.jpg" />
+    <Resource Include="Images\35.jpg" />
+    <Resource Include="Images\36.jpg" />
+    <Resource Include="Images\37.jpg" />
+    <Resource Include="Images\38.jpg" />
+    <Resource Include="Images\39.jpg" />
+    <Resource Include="Images\4.jpg" />
+    <Resource Include="Images\40.jpg" />
+    <Resource Include="Images\41.jpg" />
+    <Resource Include="Images\42.jpg" />
+    <Resource Include="Images\43.jpg" />
+    <Resource Include="Images\44.jpg" />
+    <Resource Include="Images\47.jpg" />
+    <Resource Include="Images\48.jpg" />
+    <Resource Include="Images\5.jpg" />
+    <Resource Include="Images\6.jpg" />
+    <Resource Include="Images\7.jpg" />
+    <Resource Include="Images\8.jpg" />
+    <Resource Include="Images\9.jpg" />
+    <Resource Include="Images\m1.jpg" />
+    <Resource Include="Images\m10.jpg" />
+    <Resource Include="Images\m11.jpg" />
+    <Resource Include="Images\m12.jpg" />
+    <Resource Include="Images\m13.jpg" />
+    <Resource Include="Images\m14.jpg" />
+    <Resource Include="Images\m15.jpg" />
+    <Resource Include="Images\m16.jpg" />
+    <Resource Include="Images\m17.jpg" />
+    <Resource Include="Images\m18.jpg" />
+    <Resource Include="Images\m19.jpg" />
+    <Resource Include="Images\m2.jpg" />
+    <Resource Include="Images\m20.jpg" />
+    <Resource Include="Images\m21.jpg" />
+    <Resource Include="Images\m22.jpg" />
+    <Resource Include="Images\m23.jpg" />
+    <Resource Include="Images\m24.jpg" />
+    <Resource Include="Images\m25.jpg" />
+    <Resource Include="Images\m26.jpg" />
+    <Resource Include="Images\m27.jpg" />
+    <Resource Include="Images\m28.jpg" />
+    <Resource Include="Images\m29.jpg" />
+    <Resource Include="Images\m3.jpg" />
+    <Resource Include="Images\m30.jpg" />
+    <Resource Include="Images\m31.jpg" />
+    <Resource Include="Images\m32.jpg" />
+    <Resource Include="Images\m33.jpg" />
+    <Resource Include="Images\m34.jpg" />
+    <Resource Include="Images\m35.jpg" />
+    <Resource Include="Images\m36.jpg" />
+    <Resource Include="Images\m37.jpg" />
+    <Resource Include="Images\m38.jpg" />
+    <Resource Include="Images\m39.jpg" />
+    <Resource Include="Images\m4.jpg" />
+    <Resource Include="Images\m40.jpg" />
+    <Resource Include="Images\m41.jpg" />
+    <Resource Include="Images\m42.jpg" />
+    <Resource Include="Images\m43.jpg" />
+    <Resource Include="Images\m44.jpg" />
+    <Resource Include="Images\m45.jpg" />
+    <Resource Include="Images\m46.jpg" />
+    <Resource Include="Images\m47.jpg" />
+    <Resource Include="Images\m48.jpg" />
+    <Resource Include="Images\m49.jpg" />
+    <Resource Include="Images\m5.jpg" />
+    <Resource Include="Images\m50.jpg" />
+    <Resource Include="Images\m6.jpg" />
+    <Resource Include="Images\m7.jpg" />
+    <Resource Include="Images\m8.jpg" />
+    <Resource Include="Images\m9.jpg" />
+    <Resource Include="Images\m96.jpg" />
+    <Resource Include="Images\m97.jpg" />
+    <Resource Include="Images\m98.jpg" />
+    <Resource Include="Images\m99.jpg" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>

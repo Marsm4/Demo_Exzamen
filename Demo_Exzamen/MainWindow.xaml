@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo_Exzamen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="1111">
+	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
@@ -24,7 +24,15 @@
 			<TextBlock Text="Поиск:"/>
 			<TextBox x:Name="SearchBox" Width="200" TextChanged="SearchBox_TextChanged"/>
 			<Button Content="День рождения в этом месяце" Click="BirthdayThisMonth_Click" HorizontalAlignment="Right" Margin="10"/>
-	
+			<Button Content="Добавить клиента" Click="AddClient_Click" HorizontalAlignment="Right" Margin="10"/>
+			<Button Content="Редактировать клиента" Click="EditClient_Click" HorizontalAlignment="Right" Margin="10"/>
+			<TextBlock Text="Показывать:"/>
+			<ComboBox x:Name="PageSizeSelector" Width="100" SelectionChanged="PageSizeSelector_SelectionChanged">
+				<ComboBoxItem Content="10"/>
+				<ComboBoxItem Content="50"/>
+				<ComboBoxItem Content="200"/>
+				<ComboBoxItem Content="Все"/>
+			</ComboBox>
 		</StackPanel>
 
 		<!-- DataGrid для отображения клиентов -->
