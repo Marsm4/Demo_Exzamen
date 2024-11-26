@@ -1,0 +1,55 @@
+﻿<Window x:Class="Demo_Exzamen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo_Exzamen"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Фильтрация и поиск -->
+		<StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
+			<TextBlock Text="Фильтр по полу:"/>
+			<ComboBox x:Name="GenderFilter" Width="100" SelectionChanged="GenderFilter_SelectionChanged">
+				<ComboBoxItem Content="Все"/>
+				<ComboBoxItem Content="Мужской"/>
+				<ComboBoxItem Content="Женский"/>
+			</ComboBox>
+			<TextBlock Text="Поиск:"/>
+			<TextBox x:Name="SearchBox" Width="200" TextChanged="SearchBox_TextChanged"/>
+			<Button Content="День рождения в этом месяце" Click="BirthdayThisMonth_Click" HorizontalAlignment="Right" Margin="10"/>
+	
+		</StackPanel>
+
+		<!-- DataGrid для отображения клиентов -->
+		<DataGrid x:Name="dataGrid" Grid.Row="1" Margin="10" AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+				<DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}"/>
+				<DataGridTextColumn Header="Имя" Binding="{Binding FirstName}"/>
+				<DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+				<DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
+				<DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=d}"/>
+				<DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+				<DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+				<DataGridTextColumn Header="Дата добавления" Binding="{Binding RegistrationDate, StringFormat=d}"/>
+				<DataGridTextColumn Header="Дата последнего посещения" Binding="{Binding LastVisitDate, StringFormat=d}"/>
+				<DataGridTextColumn Header="Количество посещений" Binding="{Binding VisitCount}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<!-- Навигация -->
+		<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="10">
+			<Button Content="Предыдущая страница" Click="PreviousPage_Click"/>
+			<Button Content="Следующая страница" Click="NextPage_Click"/>
+			<Button Content="Удалить клиента" Click="DeleteClient_Click" HorizontalAlignment="Right"/>
+			<TextBlock x:Name="PageInfo" VerticalAlignment="Center" Margin="10,0"/>
+		</StackPanel>
+	</Grid>
+</Window>
