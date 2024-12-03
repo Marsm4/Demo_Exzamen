@@ -5,59 +5,79 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Demo_Exzamen"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1111">
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="Auto"/>
-		</Grid.RowDefinitions>
+        Title="MainWindow" Height="750" Width="1311">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-		<!-- Фильтрация и поиск -->
-		<StackPanel Orientation="Horizontal" Grid.Row="0" Margin="10">
-			<TextBlock Text="Фильтр по полу:"/>
-			<ComboBox x:Name="GenderFilter" Width="100" SelectionChanged="GenderFilter_SelectionChanged">
-				<ComboBoxItem Content="Все"/>
-				<ComboBoxItem Content="Мужской"/>
-				<ComboBoxItem Content="Женский"/>
-			</ComboBox>
-			<TextBlock Text="Поиск:"/>
-			<TextBox x:Name="SearchBox" Width="200" TextChanged="SearchBox_TextChanged"/>
-			<Button Content="День рождения в этом месяце" Click="BirthdayThisMonth_Click" HorizontalAlignment="Right" Margin="10"/>
-			<Button Content="Добавить клиента" Click="AddClient_Click" HorizontalAlignment="Right" Margin="10"/>
-			<Button Content="Редактировать клиента" Click="EditClient_Click" HorizontalAlignment="Right" Margin="10"/>
-			<TextBlock Text="Показывать:"/>
-			<ComboBox x:Name="PageSizeSelector" Width="100" SelectionChanged="PageSizeSelector_SelectionChanged">
-				<ComboBoxItem Content="10"/>
-				<ComboBoxItem Content="50"/>
-				<ComboBoxItem Content="200"/>
-				<ComboBoxItem Content="Все"/>
-			</ComboBox>
-		</StackPanel>
+        <!-- Шапка с логотипом -->
+        <Grid Grid.Row="0" Background="{StaticResource SecondaryBackgroundColor}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Image Source="beauty_logo.png" Width="100" Height="100" Margin="10"/>
+                <TextBlock Text="Салон красоты КТ" FontSize="24" VerticalAlignment="Center" Margin="10"/>
+            </StackPanel>
+        </Grid>
 
-		<!-- DataGrid для отображения клиентов -->
-		<DataGrid x:Name="dataGrid" Grid.Row="1" Margin="10" AutoGenerateColumns="False">
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-				<DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}"/>
-				<DataGridTextColumn Header="Фамилия" Binding="{Binding FirstName}"/>
-				<DataGridTextColumn Header="Имя" Binding="{Binding LastName}"/>
-				<DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
-				<DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=d}"/>
-				<DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
-				<DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-				<DataGridTextColumn Header="Дата добавления" Binding="{Binding RegistrationDate, StringFormat=d}"/>
-				<DataGridTextColumn Header="Дата последнего посещения" Binding="{Binding LastVisitDate, StringFormat=d}"/>
-				<DataGridTextColumn Header="Количество посещений" Binding="{Binding VisitCount}"/>
-			</DataGrid.Columns>
-		</DataGrid>
+        <!-- Фильтрация и поиск -->
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
-		<!-- Навигация -->
-		<StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="10">
-			<Button Content="Предыдущая страница" Click="PreviousPage_Click"/>
-			<Button Content="Следующая страница" Click="NextPage_Click"/>
-			<Button Content="Удалить клиента" Click="DeleteClient_Click" HorizontalAlignment="Right"/>
-			<TextBlock x:Name="PageInfo" VerticalAlignment="Center" Margin="10,0"/>
-		</StackPanel>
-	</Grid>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                <TextBlock Text="Фильтр по полу:"/>
+                <ComboBox x:Name="GenderFilter" Width="100" SelectionChanged="GenderFilter_SelectionChanged">
+                    <ComboBoxItem Content="Все"/>
+                    <ComboBoxItem Content="Мужской"/>
+                    <ComboBoxItem Content="Женский"/>
+                </ComboBox>
+                <TextBlock Text="Поиск:"/>
+                <TextBox x:Name="SearchBox" Width="200" TextChanged="SearchBox_TextChanged"/>
+                <Button Content="День рождения в этом месяце" Click="BirthdayThisMonth_Click" HorizontalAlignment="Right" Margin="10"/>
+                <Button Content="Добавить клиента" Click="AddClient_Click" HorizontalAlignment="Right" Margin="10"/>
+                <Button Content="Редактировать клиента" Click="EditClient_Click" HorizontalAlignment="Right" Margin="10"/>
+                <TextBlock Text="Показывать:"/>
+                <ComboBox x:Name="PageSizeSelector" Width="100" SelectionChanged="PageSizeSelector_SelectionChanged">
+                    <ComboBoxItem Content="10"/>
+                    <ComboBoxItem Content="50"/>
+                    <ComboBoxItem Content="200"/>
+                    <ComboBoxItem Content="Все"/>
+                </ComboBox>
+            </StackPanel>
+
+            <!-- DataGrid для отображения клиентов -->
+            <DataGrid x:Name="dataGrid" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding FirstName}"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding LastName}"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}"/>
+                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=d}"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="Дата добавления" Binding="{Binding RegistrationDate, StringFormat=d}"/>
+                    <DataGridTextColumn Header="Дата последнего посещения" Binding="{Binding LastVisitDate, StringFormat=d}"/>
+                    <DataGridTextColumn Header="Количество посещений" Binding="{Binding VisitCount}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Навигация -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center" Margin="10">
+            <Button Content="Предыдущая страница" Click="PreviousPage_Click"/>
+            <Button Content="Следующая страница" Click="NextPage_Click"/>
+            <Button Content="Удалить клиента" Click="DeleteClient_Click" HorizontalAlignment="Right"/>
+            <TextBlock x:Name="PageInfo" VerticalAlignment="Center" Margin="10,0"/>
+        </StackPanel>
+    </Grid>
 </Window>

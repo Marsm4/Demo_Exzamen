@@ -280,6 +280,7 @@
     <Resource Include="Images\m97.jpg" />
     <Resource Include="Images\m98.jpg" />
     <Resource Include="Images\m99.jpg" />
+    <Resource Include="beauty_logo.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
