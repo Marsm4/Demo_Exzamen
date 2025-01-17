@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Linq;
 
 namespace Demo_Exzamen
 {
@@ -44,10 +45,44 @@ namespace Demo_Exzamen
             }
 
             // Сортировка
-            query = query.OrderBy(c => c.LastName);
+            IOrderedQueryable<Clients> orderedQuery = null;
+
+            // Сортировка по фамилии
+            if (_sortByLastName == "По возрастанию")
+            {
+                orderedQuery = query.OrderBy(c => c.FirstName);
+            }
+            else if (_sortByLastName == "По убыванию")
+            {
+                orderedQuery = query.OrderByDescending(c => c.FirstName);
+            }
+            else
+            {
+                orderedQuery = query.OrderBy(c => c.FirstName); // По умолчанию сортируем по фамилии
+            }
+
+            // Сортировка по дате последнего посещения
+            if (_sortByLastVisitDate == "Сначала новые")
+            {
+                orderedQuery = orderedQuery.ThenByDescending(c => c.LastVisitDate);
+            }
+            else if (_sortByLastVisitDate == "Сначала старые")
+            {
+                orderedQuery = orderedQuery.ThenBy(c => c.LastVisitDate);
+            }
+
+            // Сортировка по количеству посещений
+            if (_sortByVisitCount == "По убыванию")
+            {
+                orderedQuery = orderedQuery.ThenByDescending(c => c.VisitCount);
+            }
+            else if (_sortByVisitCount == "По возрастанию")
+            {
+                orderedQuery = orderedQuery.ThenBy(c => c.VisitCount);
+            }
 
             // Пагинация
-            var totalItems = query.Count();
+            var totalItems = orderedQuery.Count();
             var totalPages = (int)Math.Ceiling((double)totalItems / _pageSize);
             _currentPage = Math.Min(_currentPage, totalPages);
 
@@ -58,7 +93,7 @@ namespace Demo_Exzamen
                 skipCount = 0;
             }
 
-            var clients = query
+            var clients = orderedQuery
                 .Skip(skipCount)
                 .Take(_pageSize)
                 .ToList();
@@ -222,6 +257,47 @@ namespace Demo_Exzamen
         private int GetCurrentPage()
         {
             return _currentPage;
+        }
+        //задание на сортировку данных
+        private string _sortByLastName = "По возрастанию"; // По умолчанию сортировка по возрастанию
+        private string _sortByLastVisitDate = "Сначала новые"; // По умолчанию сначала новые
+        private string _sortByVisitCount = "По убыванию"; // По умолчанию по убыванию
+
+        private void SortByLastName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _sortByLastName = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
+            _currentPage = 1;
+            LoadData();
+        }
+
+        private void SortByLastVisitDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _sortByLastVisitDate = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
+            _currentPage = 1;
+            LoadData();
+        }
+
+        private void SortByVisitCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _sortByVisitCount = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
+            _currentPage = 1;
+            LoadData();
+        }
+        private void ResetSort_Click(object sender, RoutedEventArgs e)
+        {
+            // Сбрасываем все сортировки
+            _sortByLastName = "По возрастанию";
+            _sortByLastVisitDate = "Сначала новые";
+            _sortByVisitCount = "По убыванию";
+
+            // Обновляем выбранные значения в ComboBox
+            SortByLastName.SelectedIndex = 0;
+            SortByLastVisitDate.SelectedIndex = 0;
+            SortByVisitCount.SelectedIndex = 0;
+
+            // Перезагружаем данные
+            _currentPage = 1;
+            LoadData();
         }
     }
 }
