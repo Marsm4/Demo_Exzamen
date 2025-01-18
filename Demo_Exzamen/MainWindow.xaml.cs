@@ -21,7 +21,61 @@ namespace Demo_Exzamen
             _context = new RPM_DEMO_PROBAEntities1();
             LoadData();
         }
+        private IOrderedQueryable<Clients> ApplySortByLastName(IQueryable<Clients> query)
+        {
+            if (_sortByLastName == "По возрастанию")
+            {
+                return query.OrderBy(c => c.FirstName);
+            }
+            else if (_sortByLastName == "По убыванию")
+            {
+                return query.OrderByDescending(c => c.FirstName);
+            }
+            else
+            {
+                return query.OrderBy(c => c.ID); // По умолчанию сортируем по ID
+            }
+        }
 
+        private IOrderedQueryable<Clients> ApplySortByLastVisitDate(IOrderedQueryable<Clients> query)
+        {
+            if (_sortByLastVisitDate == "Сначала новые")
+            {
+                return query
+                    .OrderByDescending(c => c.LastVisitDate.HasValue) // Сначала записи с датой
+                    .ThenByDescending(c => c.LastVisitDate);         // Затем сортируем по убыванию даты
+            }
+            else if (_sortByLastVisitDate == "Сначала старые")
+            {
+                return query
+                    .OrderByDescending(c => c.LastVisitDate.HasValue) // Сначала записи с датой
+                    .ThenBy(c => c.LastVisitDate);                  // Затем сортируем по возрастанию даты
+            }
+            else
+            {
+                return query; // Если сортировка не выбрана, возвращаем исходный запрос
+            }
+        }
+
+        private IOrderedQueryable<Clients> ApplySortByVisitCount(IOrderedQueryable<Clients> query)
+        {
+            if (_sortByVisitCount == "По убыванию")
+            {
+                return query
+                    .OrderByDescending(c => c.VisitCount.HasValue) // Сначала записи с количеством посещений
+                    .ThenByDescending(c => c.VisitCount);         // Затем сортируем по убыванию
+            }
+            else if (_sortByVisitCount == "По возрастанию")
+            {
+                return query
+                    .OrderByDescending(c => c.VisitCount.HasValue) // Сначала записи с количеством посещений
+                    .ThenBy(c => c.VisitCount);                  // Затем сортируем по возрастанию
+            }
+            else
+            {
+                return query; // Если сортировка не выбрана, возвращаем исходный запрос
+            }
+        }
         private void LoadData()
         {
             var query = _context.Clients.AsQueryable();
@@ -44,50 +98,10 @@ namespace Demo_Exzamen
                     c.Phone.Contains(_searchText));
             }
 
-            // Сортировка
-            IOrderedQueryable<Clients> orderedQuery = null;
-
-            // Сортировка по фамилии
-            if (_sortByLastName == "По возрастанию")
-            {
-                orderedQuery = query.OrderBy(c => c.FirstName);
-            }
-            else if (_sortByLastName == "По убыванию")
-            {
-                orderedQuery = query.OrderByDescending(c => c.FirstName);
-            }
-            else
-            {
-                orderedQuery = query.OrderBy(c => c.ID); // По умолчанию сортируем по ID (без сортировки по фамилии)
-            }
-
-            // Сортировка по дате последнего посещения
-            if (_sortByLastVisitDate == "Сначала новые")
-            {
-                orderedQuery = orderedQuery
-                    .OrderByDescending(c => c.LastVisitDate.HasValue) // Сначала записи с датой
-                    .ThenByDescending(c => c.LastVisitDate);         // Затем сортируем по убыванию даты
-            }
-            else if (_sortByLastVisitDate == "Сначала старые")
-            {
-                orderedQuery = orderedQuery
-                    .OrderByDescending(c => c.LastVisitDate.HasValue) // Сначала записи с датой
-                    .ThenBy(c => c.LastVisitDate);                  // Затем сортируем по возрастанию даты
-            }
-
-            // Сортировка по количеству посещений
-            if (_sortByVisitCount == "По убыванию")
-            {
-                orderedQuery = orderedQuery
-                    .OrderByDescending(c => c.VisitCount.HasValue) // Сначала записи с количеством посещений
-                    .ThenByDescending(c => c.VisitCount);         // Затем сортируем по убыванию
-            }
-            else if (_sortByVisitCount == "По возрастанию")
-            {
-                orderedQuery = orderedQuery
-                    .OrderByDescending(c => c.VisitCount.HasValue) // Сначала записи с количеством посещений
-                    .ThenBy(c => c.VisitCount);                  // Затем сортируем по возрастанию
-            }
+            // Применяем сортировки последовательно
+            var orderedQuery = ApplySortByLastName(query);
+            orderedQuery = ApplySortByLastVisitDate(orderedQuery);
+            orderedQuery = ApplySortByVisitCount(orderedQuery);
 
             // Пагинация
             var totalItems = orderedQuery.Count();
