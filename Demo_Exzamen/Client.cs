@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Windows.Media;
 
 namespace Demo_Exzamen
 {
@@ -14,6 +15,10 @@ namespace Demo_Exzamen
         public DateTime? Birthday { get; set; }
         public string GenderCode { get; set; }
         public string PhotoPath { get; set; }
+        public partial class Clients
+        {
+            public ImageSource PhotoPath { get; set; }
+        }
     }
 
 }

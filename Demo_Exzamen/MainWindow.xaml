@@ -93,6 +93,7 @@
             <Button Content="Следующая страница" Click="NextPage_Click"/>
             <Button Content="Удалить клиента" Click="DeleteClient_Click" Margin="10"/>
             <TextBlock x:Name="PageInfo" VerticalAlignment="Center" Margin="10,0"/>
+	
         </StackPanel>
     </Grid>
 </Window>

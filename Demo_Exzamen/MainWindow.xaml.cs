@@ -64,11 +64,15 @@ namespace Demo_Exzamen
             // Сортировка по дате последнего посещения
             if (_sortByLastVisitDate == "Сначала новые")
             {
-                orderedQuery = orderedQuery.ThenByDescending(c => c.LastVisitDate);
+                orderedQuery = orderedQuery
+                    .OrderByDescending(c => c.LastVisitDate.HasValue) // Сначала записи с датой
+                    .ThenByDescending(c => c.LastVisitDate);         // Затем сортируем по убыванию даты
             }
             else if (_sortByLastVisitDate == "Сначала старые")
             {
-                orderedQuery = orderedQuery.ThenBy(c => c.LastVisitDate);
+                orderedQuery = orderedQuery
+                    .OrderByDescending(c => c.LastVisitDate.HasValue) // Сначала записи с датой
+                    .ThenBy(c => c.LastVisitDate);                  // Затем сортируем по возрастанию даты
             }
 
             // Сортировка по количеству посещений
