@@ -53,21 +53,25 @@
         <!-- Сортировка -->
         <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10">
             <TextBlock Text="Сортировка по фамилии:" VerticalAlignment="Center"/>
-            <ComboBox x:Name="SortByLastName" Width="150" Margin="5" SelectionChanged="SortByLastName_SelectionChanged">
-                <ComboBoxItem Content="По возрастанию"/>
-                <ComboBoxItem Content="По убыванию"/>
-            </ComboBox>
-            <TextBlock Text="Сортировка по дате посещения:" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <ComboBox x:Name="SortByLastVisitDate" Width="150" Margin="5" SelectionChanged="SortByLastVisitDate_SelectionChanged">
-                <ComboBoxItem Content="Сначала новые"/>
-                <ComboBoxItem Content="Сначала старые"/>
-            </ComboBox>
-            <TextBlock Text="Сортировка по посещениям:" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <ComboBox x:Name="SortByVisitCount" Width="150" Margin="5" SelectionChanged="SortByVisitCount_SelectionChanged">
-                <ComboBoxItem Content="По убыванию"/>
-                <ComboBoxItem Content="По возрастанию"/>
-            </ComboBox>
-            <Button Content="Сбросить сортировку" Click="ResetSort_Click" Margin="10"/>
+			<ComboBox x:Name="SortByLastName" Width="150" Margin="5" SelectionChanged="SortByLastName_SelectionChanged">
+				<ComboBoxItem Content=""/>
+				<ComboBoxItem Content="По возрастанию"/>
+				<ComboBoxItem Content="По убыванию"/>
+			</ComboBox>
+
+			<TextBlock Text="Сортировка по дате посещения:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+			<ComboBox x:Name="SortByLastVisitDate" Width="150" Margin="5" SelectionChanged="SortByLastVisitDate_SelectionChanged">
+				<ComboBoxItem Content=""/>
+				<ComboBoxItem Content="Сначала новые"/>
+				<ComboBoxItem Content="Сначала старые"/>
+			</ComboBox>
+			<TextBlock Text="Сортировка по посещениям:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+			<ComboBox x:Name="SortByVisitCount" Width="150" Margin="5" SelectionChanged="SortByVisitCount_SelectionChanged">
+				<ComboBoxItem Content=""/>
+				<ComboBoxItem Content="По убыванию"/>
+				<ComboBoxItem Content="По возрастанию"/>
+			</ComboBox>
+			<Button Content="Сбросить сортировку" Click="ResetSort_Click" Margin="10"/>
         </StackPanel>
 
         <!-- DataGrid для отображения клиентов -->

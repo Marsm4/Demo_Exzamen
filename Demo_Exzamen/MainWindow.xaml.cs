@@ -58,7 +58,7 @@ namespace Demo_Exzamen
             }
             else
             {
-                orderedQuery = query.OrderBy(c => c.FirstName); // По умолчанию сортируем по фамилии
+                orderedQuery = query.OrderBy(c => c.ID); // По умолчанию сортируем по ID (без сортировки по фамилии)
             }
 
             // Сортировка по дате последнего посещения
@@ -78,11 +78,15 @@ namespace Demo_Exzamen
             // Сортировка по количеству посещений
             if (_sortByVisitCount == "По убыванию")
             {
-                orderedQuery = orderedQuery.ThenByDescending(c => c.VisitCount);
+                orderedQuery = orderedQuery
+                    .OrderByDescending(c => c.VisitCount.HasValue) // Сначала записи с количеством посещений
+                    .ThenByDescending(c => c.VisitCount);         // Затем сортируем по убыванию
             }
             else if (_sortByVisitCount == "По возрастанию")
             {
-                orderedQuery = orderedQuery.ThenBy(c => c.VisitCount);
+                orderedQuery = orderedQuery
+                    .OrderByDescending(c => c.VisitCount.HasValue) // Сначала записи с количеством посещений
+                    .ThenBy(c => c.VisitCount);                  // Затем сортируем по возрастанию
             }
 
             // Пагинация
@@ -262,6 +266,7 @@ namespace Demo_Exzamen
         {
             return _currentPage;
         }
+
         //задание на сортировку данных
         private string _sortByLastName = "По возрастанию"; // По умолчанию сортировка по возрастанию
         private string _sortByLastVisitDate = "Сначала новые"; // По умолчанию сначала новые
@@ -290,9 +295,9 @@ namespace Demo_Exzamen
         private void ResetSort_Click(object sender, RoutedEventArgs e)
         {
             // Сбрасываем все сортировки
-            _sortByLastName = "По возрастанию";
-            _sortByLastVisitDate = "Сначала новые";
-            _sortByVisitCount = "По убыванию";
+            _sortByLastName = "";
+            _sortByLastVisitDate = "";
+            _sortByVisitCount = "";
 
             // Обновляем выбранные значения в ComboBox
             SortByLastName.SelectedIndex = 0;
@@ -303,5 +308,6 @@ namespace Demo_Exzamen
             _currentPage = 1;
             LoadData();
         }
+
     }
 }
